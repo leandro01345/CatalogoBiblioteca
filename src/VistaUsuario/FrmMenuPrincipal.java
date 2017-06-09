@@ -8,6 +8,7 @@ package VistaUsuario;
 import Clases.*;
 import ConexionBd.DetalleSolicitudDB;
 import ConexionBd.*;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private TableRowSorter trsFiltro;
     DefaultTableModel m;
     boolean logeado= false;
+    
    
 
     /**
@@ -40,6 +42,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.limpiarDatos();
         this.listarDatos();
+        lblListado.setFocusable(true);
     }
     
     /**
@@ -52,30 +55,45 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         dlgCarrito = new javax.swing.JDialog();
-        lblCarrito = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        btnEnviar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbSeleccion = new javax.swing.JTable();
-        btnEnviar = new javax.swing.JButton();
+        lblCarrito = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
         PnlListado = new javax.swing.JPanel();
         btnLogearse = new javax.swing.JButton();
         txtTitulo = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbDocumento = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        lblListado = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
         btnCarrito = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblFiltrar = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblCategoria = new javax.swing.JLabel();
+        lblAutor = new javax.swing.JLabel();
         txtAutor = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         dlgCarrito.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblCarrito.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
-        lblCarrito.setText("Carrito de documentos");
+        jPanel1.setBackground(new java.awt.Color(31, 32, 34));
 
+        btnEnviar.setBackground(new java.awt.Color(0, 153, 204));
+        btnEnviar.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        btnEnviar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEnviar.setText("Enviar solicitud");
+        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEnviarActionPerformed(evt);
+            }
+        });
+
+        tbSeleccion.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         tbSeleccion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -84,48 +102,74 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 "Id", "Tipo", "Titulo", "Autor", "Editorial", "Año", "Edificion", "Categoria"
             }
         ));
+        tbSeleccion.setDragEnabled(true);
+        tbSeleccion.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(tbSeleccion);
 
-        btnEnviar.setText("Enviar solicitud");
-        btnEnviar.addActionListener(new java.awt.event.ActionListener() {
+        lblCarrito.setBackground(new java.awt.Color(0, 153, 204));
+        lblCarrito.setFont(new java.awt.Font("Rockwell", 0, 18)); // NOI18N
+        lblCarrito.setForeground(new java.awt.Color(0, 153, 204));
+        lblCarrito.setText("Carrito de documentos");
+
+        btnEliminar.setBackground(new java.awt.Color(0, 153, 204));
+        btnEliminar.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Quitar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEnviarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(177, 177, 177)
+                .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout dlgCarritoLayout = new javax.swing.GroupLayout(dlgCarrito.getContentPane());
         dlgCarrito.getContentPane().setLayout(dlgCarritoLayout);
         dlgCarritoLayout.setHorizontalGroup(
             dlgCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dlgCarritoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(dlgCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgCarritoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(dlgCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgCarritoLayout.createSequentialGroup()
-                                .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(207, 207, 207))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgCarritoLayout.createSequentialGroup()
-                                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(77, 77, 77))))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         dlgCarritoLayout.setVerticalGroup(
             dlgCarritoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dlgCarritoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appp Documentos");
 
+        PnlListado.setBackground(new java.awt.Color(31, 32, 34));
+
+        btnLogearse.setBackground(new java.awt.Color(0, 153, 204));
+        btnLogearse.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        btnLogearse.setForeground(new java.awt.Color(255, 255, 255));
         btnLogearse.setText("Logearse");
         btnLogearse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +177,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        txtTitulo.setBackground(new java.awt.Color(31, 32, 34));
+        txtTitulo.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        txtTitulo.setText("Ingrese Titulo");
+        txtTitulo.setBorder(null);
+        txtTitulo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTituloFocusGained(evt);
+            }
+        });
         txtTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTituloActionPerformed(evt);
@@ -165,15 +219,19 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         tbDocumento.setToolTipText("");
-        tbDocumento.setColumnSelectionAllowed(true);
         tbDocumento.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tbDocumento.setDragEnabled(true);
+        tbDocumento.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(tbDocumento);
         tbDocumento.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
-        jLabel1.setText("Listado de documentos");
+        lblListado.setFont(new java.awt.Font("Rockwell", 0, 14)); // NOI18N
+        lblListado.setForeground(new java.awt.Color(0, 153, 204));
+        lblListado.setText("Listado de documentos");
 
+        btnAgregar.setBackground(new java.awt.Color(0, 153, 204));
+        btnAgregar.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        btnAgregar.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +239,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCarrito.setBackground(new java.awt.Color(0, 153, 204));
+        btnCarrito.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        btnCarrito.setForeground(new java.awt.Color(255, 255, 255));
         btnCarrito.setText("Carrito");
         btnCarrito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,20 +249,48 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setText("Filtrar por: ");
+        lblFiltrar.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        lblFiltrar.setForeground(new java.awt.Color(0, 153, 204));
+        lblFiltrar.setText("Filtrar por: ");
 
-        jLabel2.setText("Titulo:");
+        lblTitulo.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(102, 102, 102));
+        lblTitulo.setText("Titulo:");
 
-        jLabel3.setText("Categoria:");
+        lblCategoria.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        lblCategoria.setForeground(new java.awt.Color(102, 102, 102));
+        lblCategoria.setText("Categoria:");
 
-        jLabel4.setText("Autor:");
+        lblAutor.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        lblAutor.setForeground(new java.awt.Color(102, 102, 102));
+        lblAutor.setText("Autor:");
 
+        txtAutor.setBackground(new java.awt.Color(31, 32, 34));
+        txtAutor.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        txtAutor.setForeground(new java.awt.Color(255, 255, 255));
+        txtAutor.setText("Ingrese autor");
+        txtAutor.setBorder(null);
+        txtAutor.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAutorFocusGained(evt);
+            }
+        });
         txtAutor.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtAutorKeyTyped(evt);
             }
         });
 
+        txtCategoria.setBackground(new java.awt.Color(31, 32, 34));
+        txtCategoria.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        txtCategoria.setForeground(new java.awt.Color(255, 255, 255));
+        txtCategoria.setText("Ingrese Categoria");
+        txtCategoria.setBorder(null);
+        txtCategoria.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCategoriaFocusGained(evt);
+            }
+        });
         txtCategoria.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtCategoriaKeyTyped(evt);
@@ -213,78 +302,99 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         PnlListadoLayout.setHorizontalGroup(
             PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PnlListadoLayout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel2))
-                .addGap(24, 24, 24)
-                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAutor)
-                    .addComponent(txtTitulo)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                .addGap(275, 275, 275)
-                .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogearse, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
-            .addGroup(PnlListadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
+                .addContainerGap(55, Short.MAX_VALUE)
+                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCategoria)
+                    .addComponent(lblAutor)
+                    .addComponent(lblTitulo))
+                .addGap(24, 24, 24)
+                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PnlListadoLayout.createSequentialGroup()
+                        .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                            .addComponent(jSeparator1))
+                        .addGap(275, 275, 275)
+                        .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)))
+                .addGap(57, 57, 57))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLogearse, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
             .addGroup(PnlListadoLayout.createSequentialGroup()
-                .addGap(224, 224, 224)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PnlListadoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel5)
+                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnlListadoLayout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(lblListado))
+                    .addGroup(PnlListadoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblFiltrar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PnlListadoLayout.setVerticalGroup(
             PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnlListadoLayout.createSequentialGroup()
+                        .addComponent(lblListado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
+                        .addGap(0, 33, Short.MAX_VALUE)
+                        .addComponent(lblFiltrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblAutor))))
+                .addGap(4, 4, 4)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(4, 4, 4)
                 .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCategoria))
+                .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PnlListadoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PnlListadoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PnlListadoLayout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addComponent(lblTitulo))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLogearse, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PnlListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(PnlListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(PnlListado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+            .addComponent(PnlListado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -431,6 +541,38 @@ public void filtroCategoria()
         trsFiltro = new TableRowSorter(tbDocumento.getModel());
         tbDocumento.setRowSorter(trsFiltro);
     }//GEN-LAST:event_txtCategoriaKeyTyped
+
+    private void txtAutorFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAutorFocusGained
+        // TODO add your handling code here:
+       
+        lblTitulo.setForeground(new Color(102,102,102));
+        lblCategoria.setForeground(new Color(102,102,102));
+        lblAutor.setForeground(new Color(0,153,204));
+        txtAutor.setText("");
+    }//GEN-LAST:event_txtAutorFocusGained
+
+    private void txtCategoriaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCategoriaFocusGained
+        // TODO add your handling code here:
+       
+        lblTitulo.setForeground(new Color(102,102,102));
+        lblCategoria.setForeground(new Color(0,153,204));
+        lblAutor.setForeground(new Color(102,102,102));
+        txtCategoria.setText("");
+    }//GEN-LAST:event_txtCategoriaFocusGained
+
+    private void txtTituloFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTituloFocusGained
+        // TODO add your handling code here:
+      
+        lblTitulo.setForeground(new Color(0,153,204));
+        lblCategoria.setForeground(new Color(102,102,102));
+        lblAutor.setForeground(new Color(102,102,102));
+        txtTitulo.setText("");
+    }//GEN-LAST:event_txtTituloFocusGained
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_btnEliminarActionPerformed
     public void listarDatos()
     {
       documentos= db.getListadoDocumento();
@@ -487,17 +629,22 @@ public void filtroCategoria()
     private javax.swing.JPanel PnlListado;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCarrito;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLogearse;
     private javax.swing.JDialog dlgCarrito;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCarrito;
+    private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblFiltrar;
+    private javax.swing.JLabel lblListado;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tbDocumento;
     private javax.swing.JTable tbSeleccion;
     private javax.swing.JTextField txtAutor;

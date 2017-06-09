@@ -46,9 +46,8 @@ public class LoginUser extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(31, 32, 35));
+        jPanel1.setBackground(new java.awt.Color(31, 32, 34));
         jPanel1.setForeground(new java.awt.Color(31, 32, 34));
 
         txtUsuario.setBackground(new java.awt.Color(31, 32, 34));
@@ -195,6 +194,7 @@ public class LoginUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblUser.setForeground(new Color(0,153,204));
         lblPwd.setForeground(new Color(102,102,102));
+        txtUsuario.setText("");
      
        
     }//GEN-LAST:event_txtUsuarioFocusGained
@@ -203,6 +203,7 @@ public class LoginUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         lblUser.setForeground(new Color(102,102,102));
         lblPwd.setForeground(new Color(0,153,204));
+        txtPwd.setText("");
         
      
     }//GEN-LAST:event_txtPwdFocusGained
