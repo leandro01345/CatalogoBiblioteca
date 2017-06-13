@@ -31,6 +31,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private TableRowSorter trsFiltro;
     DefaultTableModel m;
     boolean logeado= false;
+    int idLogin;
     
    
 
@@ -61,6 +62,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         tbSeleccion = new javax.swing.JTable();
         lblCarrito = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
+        lblFecha = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         PnlListado = new javax.swing.JPanel();
         btnLogearse = new javax.swing.JButton();
         txtTitulo = new javax.swing.JTextField();
@@ -78,6 +81,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
 
         dlgCarrito.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -121,21 +125,32 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblFecha.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
+        lblFecha.setText("Fecha:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 390, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(177, 177, 177)
+                        .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,11 +159,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout dlgCarritoLayout = new javax.swing.GroupLayout(dlgCarrito.getContentPane());
@@ -297,6 +316,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout PnlListadoLayout = new javax.swing.GroupLayout(PnlListado);
         PnlListado.setLayout(PnlListadoLayout);
         PnlListadoLayout.setHorizontalGroup(
@@ -313,7 +334,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                     .addComponent(lblTitulo))
                 .addGap(24, 24, 24)
                 .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PnlListadoLayout.createSequentialGroup()
+                        .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(190, 190, 190)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PnlListadoLayout.createSequentialGroup()
                         .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
@@ -354,7 +378,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblAutor))))
+                            .addComponent(lblAutor)
+                            .addComponent(jLabel1))))
                 .addGap(4, 4, 4)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
@@ -405,6 +430,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         if (this.logeado ==false) {
               login.setVisible(true);
               dispose();
+              lblId.setText(String.valueOf(idLogin));
+            
         } else {
             int dialogButton = JOptionPane.showConfirmDialog(this, "ya hay un usuario logeado,¿Desea Cerrar Sesion?");
             if (dialogButton==JOptionPane.YES_OPTION) {
@@ -633,6 +660,8 @@ public void filtroCategoria()
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLogearse;
     private javax.swing.JDialog dlgCarrito;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -642,6 +671,7 @@ public void filtroCategoria()
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCarrito;
     private javax.swing.JLabel lblCategoria;
+    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFiltrar;
     private javax.swing.JLabel lblListado;
     private javax.swing.JLabel lblTitulo;

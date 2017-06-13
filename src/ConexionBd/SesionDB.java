@@ -5,12 +5,14 @@
  */
 package ConexionBd;
 
+import Clases.Documento;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import Clases.Sesion;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -27,7 +29,7 @@ public class SesionDB {
       try{
             Connection cnx = DataBaseConection.getConneccion();
             Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery("SELECT  USERNAMESESION,PASSWORDSESION "
+            ResultSet rs = st.executeQuery("SELECT IDSESION, USERNAMESESION,PASSWORDSESION "
                     + "FROM SESION  ");
              while(rs.next()){
                 if(user.equals(rs.getString(1))&&pass.equals(rs.getString(2)))
@@ -39,4 +41,26 @@ public class SesionDB {
         }
    return false; 
   }
+        public ArrayList<Sesion> getListadoSesion() {
+        ArrayList<Sesion> se = new ArrayList<>();
+        try {
+            cnx = DataBaseConection.getConneccion();
+            st = cnx.createStatement();
+            rs = st.executeQuery("SELECT * FROM SESION");
+            while (rs.next()) {
+                Sesion s = new Sesion();
+                s.setId_sesion(rs.getInt(1));
+                s.setUserName(rs.getString(2));
+                s.setPassword(rs.getString(3));
+                s.setTipoSesion(rs.getString(4));
+             
+               
+                
+                se.add(s);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return se;
+    }
 }

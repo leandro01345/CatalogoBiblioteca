@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package VistaUsuario;
+import Clases.Sesion;
 import ConexionBd.SesionDB;
 import java.awt.Color;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +15,8 @@ import javax.swing.JOptionPane;
  * @author Jose
  */
 public class LoginUser extends javax.swing.JFrame {
- SesionDB sesion = new SesionDB();
+ SesionDB dbSesion = new SesionDB();
+ ArrayList<Sesion>sesion;
  
  
     /**
@@ -168,19 +171,42 @@ public class LoginUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogearActionPerformed
-          
-        if (sesion.AutenticarUsuario(txtUsuario.getText(), txtPwd.getText())==true) {
-           JOptionPane.showMessageDialog(this, "Ingreso exitosamente!. :D");
+          String user; 
+          String pwd;
+          sesion = dbSesion.getListadoSesion();
+           for (Sesion se: sesion) {
+           if (se.getUserName() == txtUsuario.getText().trim() && se.getPassword()==txtPwd.getText().trim()) {
+                FrmMenuPrincipal menu = new FrmMenuPrincipal();
+                menu.idLogin = se.getId_sesion();
+                user = se.getUserName();
+                pwd = se.getPassword();
+                menu.logeado = true;
+           }
+        } 
+          JOptionPane.showMessageDialog(this, "Ingreso exitosamente!. :D");
+           
            FrmMenuPrincipal menu = new FrmMenuPrincipal();
            menu.setVisible(true);
            dispose();
           
-           menu.logeado = true;
            
-        } else {
+            if (sesion.isEmpty()){
             JOptionPane.showMessageDialog(this, "Error en el usuario o contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);
+  
+     }         
          
-       }        
+        //if (sesion.AutenticarUsuario(txtUsuario.getText(), txtPwd.getText())==true) {
+           //JOptionPane.showMessageDialog(this, "Ingreso exitosamente!. :D");
+           //FrmMenuPrincipal menu = new FrmMenuPrincipal();
+           //menu.setVisible(true);
+           //dispose();
+          
+           //menu.logeado = true;
+           
+        //} else {
+            //JOptionPane.showMessageDialog(this, "Error en el usuario o contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);
+         
+       //}        
     }//GEN-LAST:event_btnLogearActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
