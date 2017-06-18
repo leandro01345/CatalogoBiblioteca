@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class LoginUser extends javax.swing.JFrame {
  SesionDB dbSesion = new SesionDB();
- ArrayList<Sesion>sesion;
  
  
     /**
@@ -45,8 +44,6 @@ public class LoginUser extends javax.swing.JFrame {
         txtPwd = new javax.swing.JPasswordField();
         btnVolver = new javax.swing.JButton();
         btnLogear = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,9 +51,9 @@ public class LoginUser extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(31, 32, 34));
 
         txtUsuario.setBackground(new java.awt.Color(31, 32, 34));
+        txtUsuario.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
         txtUsuario.setText("UserName");
-        txtUsuario.setBorder(null);
         txtUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtUsuarioFocusGained(evt);
@@ -76,7 +73,6 @@ public class LoginUser extends javax.swing.JFrame {
         txtPwd.setBackground(new java.awt.Color(31, 32, 34));
         txtPwd.setForeground(new java.awt.Color(255, 255, 255));
         txtPwd.setText("dilanDescarado");
-        txtPwd.setBorder(null);
         txtPwd.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtPwdFocusGained(evt);
@@ -113,9 +109,7 @@ public class LoginUser extends javax.swing.JFrame {
                 .addGap(32, 32, 32))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(18, 18, 18)
@@ -138,16 +132,12 @@ public class LoginUser extends javax.swing.JFrame {
                 .addGap(50, 50, 50)
                 .addComponent(lblUser)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblPwd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(txtPwd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnVolver)
                     .addComponent(btnLogear))
@@ -171,42 +161,20 @@ public class LoginUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogearActionPerformed
-          String user; 
-          String pwd;
-          sesion = dbSesion.getListadoSesion();
-           for (Sesion se: sesion) {
-           if (se.getUserName() == txtUsuario.getText().trim() && se.getPassword()==txtPwd.getText().trim()) {
-                FrmMenuPrincipal menu = new FrmMenuPrincipal();
-                menu.idLogin = se.getId_sesion();
-                user = se.getUserName();
-                pwd = se.getPassword();
-                menu.logeado = true;
-           }
-        } 
-          JOptionPane.showMessageDialog(this, "Ingreso exitosamente!. :D");
-           
+            
+        if (dbSesion.AutenticarUsuario(txtUsuario.getText(), txtPwd.getText())==true) {
+           JOptionPane.showMessageDialog(this, "Ingreso exitosamente!. :D");
            FrmMenuPrincipal menu = new FrmMenuPrincipal();
            menu.setVisible(true);
            dispose();
-          
+           menu.logeado = true;
+           menu.idLogin  = dbSesion.BuscarId(txtUsuario.getText(), txtPwd.getText()); 
            
-            if (sesion.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Error en el usuario o contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);
-  
-     }         
-         
-        //if (sesion.AutenticarUsuario(txtUsuario.getText(), txtPwd.getText())==true) {
-           //JOptionPane.showMessageDialog(this, "Ingreso exitosamente!. :D");
-           //FrmMenuPrincipal menu = new FrmMenuPrincipal();
-           //menu.setVisible(true);
-           //dispose();
-          
-           //menu.logeado = true;
            
-        //} else {
-            //JOptionPane.showMessageDialog(this, "Error en el usuario o contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else{ 
+           JOptionPane.showMessageDialog(this, "Error en el usuario o contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);
          
-       //}        
+       }        
     }//GEN-LAST:event_btnLogearActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -273,8 +241,6 @@ public class LoginUser extends javax.swing.JFrame {
     private javax.swing.JButton btnLogear;
     private javax.swing.JButton btnVolver;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblLogin;
     private javax.swing.JLabel lblPwd;
     private javax.swing.JLabel lblUser;

@@ -33,6 +33,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     boolean logeado= false;
     int idLogin;
     
+    
    
 
     /**
@@ -63,7 +64,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         lblCarrito = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
         lblFecha = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        DateSolicitud = new com.toedter.calendar.JDateChooser();
         PnlListado = new javax.swing.JPanel();
         btnLogearse = new javax.swing.JButton();
         txtTitulo = new javax.swing.JTextField();
@@ -78,9 +79,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         lblAutor = new javax.swing.JLabel();
         txtAutor = new javax.swing.JTextField();
         txtCategoria = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jSeparator3 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
 
         dlgCarrito.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -133,9 +131,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(60, 390, Short.MAX_VALUE)
+                .addGap(60, 500, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -149,8 +146,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                         .addGap(25, 25, 25)
                         .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(DateSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,9 +160,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(DateSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -200,7 +198,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         txtTitulo.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(255, 255, 255));
         txtTitulo.setText("Ingrese Titulo");
-        txtTitulo.setBorder(null);
         txtTitulo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtTituloFocusGained(evt);
@@ -288,7 +285,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         txtAutor.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         txtAutor.setForeground(new java.awt.Color(255, 255, 255));
         txtAutor.setText("Ingrese autor");
-        txtAutor.setBorder(null);
         txtAutor.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtAutorFocusGained(evt);
@@ -304,7 +300,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         txtCategoria.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
         txtCategoria.setForeground(new java.awt.Color(255, 255, 255));
         txtCategoria.setText("Ingrese Categoria");
-        txtCategoria.setBorder(null);
         txtCategoria.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtCategoriaFocusGained(evt);
@@ -336,18 +331,13 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PnlListadoLayout.createSequentialGroup()
                         .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(190, 190, 190)
+                        .addGap(263, 263, 263)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PnlListadoLayout.createSequentialGroup()
-                        .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                            .addComponent(jSeparator1))
+                        .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(275, 275, 275)
                         .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtCategoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)))
+                    .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
                 .addGap(86, 86, 86)
@@ -373,16 +363,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                         .addComponent(lblListado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
-                        .addGap(0, 33, Short.MAX_VALUE)
+                        .addGap(0, 36, Short.MAX_VALUE)
                         .addComponent(lblFiltrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblAutor)
                             .addComponent(jLabel1))))
-                .addGap(4, 4, 4)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addGap(15, 15, 15)
                 .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCategoria))
@@ -390,19 +378,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                     .addGroup(PnlListadoLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PnlListadoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PnlListadoLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(lblTitulo))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(25, 25, 25)
+                    .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(PnlListadoLayout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(lblTitulo))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PnlListadoLayout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addComponent(txtTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addGroup(PnlListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -430,14 +413,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         if (this.logeado ==false) {
               login.setVisible(true);
               dispose();
-              lblId.setText(String.valueOf(idLogin));
+     
             
         } else {
-            int dialogButton = JOptionPane.showConfirmDialog(this, "ya hay un usuario logeado,¿Desea Cerrar Sesion?");
+           int dialogButton = JOptionPane.showConfirmDialog(this, "ya hay un usuario logeado,¿Desea Cerrar Sesion?");
             if (dialogButton==JOptionPane.YES_OPTION) {
                 JOptionPane.showMessageDialog(this, "Sesion Cerrada :D!");
                 login.setVisible(true);
                 dispose();
+                
             }
         }
      
@@ -491,11 +475,27 @@ public void filtroCategoria()
 
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
-        DetalleSolicitud detalle = new DetalleSolicitud();
+        try {
+        int idSoli=0;
+        String fecha="00/00/00";
+        String hora=" hh24:mi:ss";
+        
+        Solicitud sol = new Solicitud(this.idLogin, idSoli, fecha, hora);
+        
+        dbSolicitud.InsertInto(sol);
+       
         for (int i = 0; i < tbSeleccion.getRowCount(); i++) {
-            String idDocumento= tbSeleccion.getValueAt(i, 0).toString();
-            }
-        dbDetalle.InsertInto(detalle);
+            String idDocumento= tbSeleccion.getValueAt(i, 0).toString(); 
+            int idEjemplar = db.getIdEjemplar(idDocumento);
+             DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar, idSoli);
+             dbDetalle.InsertInto(detalle);
+            }        
+        JOptionPane.showMessageDialog(this, "Solicitud exitosa!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al ingresar solicitud!");
+        }
+
+        
     }//GEN-LAST:event_btnEnviarActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
@@ -653,6 +653,7 @@ public void filtroCategoria()
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser DateSolicitud;
     private javax.swing.JPanel PnlListado;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCarrito;
@@ -660,14 +661,10 @@ public void filtroCategoria()
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLogearse;
     private javax.swing.JDialog dlgCarrito;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCarrito;
     private javax.swing.JLabel lblCategoria;

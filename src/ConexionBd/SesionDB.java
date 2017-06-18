@@ -29,7 +29,7 @@ public class SesionDB {
       try{
             Connection cnx = DataBaseConection.getConneccion();
             Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery("SELECT IDSESION, USERNAMESESION,PASSWORDSESION "
+            ResultSet rs = st.executeQuery("SELECT USERNAMESESION,PASSWORDSESION "
                     + "FROM SESION  ");
              while(rs.next()){
                 if(user.equals(rs.getString(1))&&pass.equals(rs.getString(2)))
@@ -63,4 +63,22 @@ public class SesionDB {
         }
         return se;
     }
+      public int BuscarId(String user, String pass){
+      int id=0;
+      try{
+            Connection cnx = DataBaseConection.getConneccion();
+            Statement st = cnx.createStatement();
+            ResultSet rs = st.executeQuery("SELECT USERNAMESESION,PASSWORDSESION, USUARIO_IDUSUARIO "
+                    + "FROM SESION  ");
+             while(rs.next()){
+                if(user.equals(rs.getString(1))&&pass.equals(rs.getString(2)))
+                { id = rs.getInt(3);
+                    return id;}
+             }
+         }catch(SQLException es){
+         System.out.println(es.getMessage());
+         System.out.println("Error en buscar");
+        }
+   return id; 
+  }
 }

@@ -76,5 +76,19 @@ public class DocumentoDB {
      return n;
      
      }
-
+    public int getIdEjemplar(String idDocumento){
+    int idEjemplar=0;
+     try {
+            Connection cnx = DataBaseConection.getConneccion();
+            st = cnx.createStatement();
+            rs=st.executeQuery("select primer_ejemplar_disponible from v_doc_ejemplar_disponible where "+ idDocumento+" ={iddocumento};");
+            while(rs.next()){
+            idEjemplar = rs.getInt(1);
+            return idEjemplar;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage()+" Error buscar");
+        }
+    return idEjemplar;
+    } 
 }
