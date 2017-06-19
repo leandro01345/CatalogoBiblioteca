@@ -11,28 +11,30 @@ package Clases;
  */
 public class Solicitud {
     private int idUsuario;
-    private int idSolicitud;
+    private String idSolicitud;
     private String fechaSolicitud;
-    private String horaSolicitud;
+    private String estado;
+
+   
 
     public Solicitud() {
     }
 
-    public Solicitud(int idUsuario, int idSolicitud, String fechaSolicitud, String horaSolicitud) {
+    public Solicitud(int idUsuario, String idSolicitud, String fechaSolicitud, String estado) {
         this.idUsuario = idUsuario;
         this.idSolicitud = idSolicitud;
         this.fechaSolicitud = fechaSolicitud;
-        this.horaSolicitud = horaSolicitud;
+        this.estado = estado;
+     
+    }
+    public String getEstado() {
+        return estado;
     }
 
-    public String getHoraSolicitud() {
-        return horaSolicitud;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
-
-    public void setHoraSolicitud(String horaSolicitud) {
-        this.horaSolicitud = horaSolicitud;
-    }
-
+ 
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -41,11 +43,11 @@ public class Solicitud {
         this.idUsuario = idUsuario;
     }
 
-    public int getIdSolicitud() {
+    public String getIdSolicitud() {
         return idSolicitud;
     }
 
-    public void setIdSolicitud(int idSolicitud) {
+    public void setIdSolicitud(String idSolicitud) {
         this.idSolicitud = idSolicitud;
     }
 

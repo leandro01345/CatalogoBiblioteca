@@ -476,18 +476,18 @@ public void filtroCategoria()
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
         try {
-        int idSoli=0;
-        String fecha="00/00/00";
-        String hora=" hh24:mi:ss";
+        String idSoli=" SEQ_SOLICITUD.NEXTVAL ";
+        String fecha=" sysdate ";
+        String estado="'pendiente'";
         
-        Solicitud sol = new Solicitud(this.idLogin, idSoli, fecha, hora);
+        Solicitud sol = new Solicitud(this.idLogin, idSoli, fecha,estado);
         
         dbSolicitud.InsertInto(sol);
        
         for (int i = 0; i < tbSeleccion.getRowCount(); i++) {
             String idDocumento= tbSeleccion.getValueAt(i, 0).toString(); 
             int idEjemplar = db.getIdEjemplar(idDocumento);
-             DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar, idSoli);
+             DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar,Integer.parseInt(idSoli));
              dbDetalle.InsertInto(detalle);
             }        
         JOptionPane.showMessageDialog(this, "Solicitud exitosa!");
