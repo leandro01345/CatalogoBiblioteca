@@ -26,7 +26,7 @@ public class DetalleSolicitudDB {
         try {
             cnx = DataBaseConection.getConneccion();
             pst = cnx.prepareStatement("INSERT INTO DETALLESOLICITUD(EJEMPLAR_IDEJEMPLAR, SOLICITUD_IDSOLICITUD) "
-                    + "VALUES(?,?)");
+                    + " VALUES(?,?)");
             pst.setInt(1, d.getIdEjemplar());
             pst.setInt(2, d.getSolicitudId());
             pst.executeQuery();
@@ -40,7 +40,7 @@ public class DetalleSolicitudDB {
      try {
             Connection cnx = DataBaseConection.getConneccion();
             st = cnx.createStatement();
-            rs=st.executeQuery("select idsolicitud from solicitud where usuario_idusuario= "+ idUsuario +" and rownum=1 order by idsolicitud desc");
+            rs=st.executeQuery("select idsolicitud from solicitud where usuario_idusuario= " +idUsuario+ " and rownum=1 order by idsolicitud desc");
             while(rs.next()){
             idSolicitud = rs.getInt(1);
             return idSolicitud;

@@ -64,8 +64,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         tbSeleccion = new javax.swing.JTable();
         lblCarrito = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
-        lblFecha = new javax.swing.JLabel();
-        DateSolicitud = new com.toedter.calendar.JDateChooser();
         PnlListado = new javax.swing.JPanel();
         btnLogearse = new javax.swing.JButton();
         txtTitulo = new javax.swing.JTextField();
@@ -124,31 +122,20 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        lblFecha.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
-        lblFecha.setForeground(new java.awt.Color(255, 255, 255));
-        lblFecha.setText("Fecha:");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
-                        .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(DateSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(177, 177, 177)
+                .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,14 +146,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 .addGap(57, 57, 57)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DateSolicitud, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dlgCarritoLayout = new javax.swing.GroupLayout(dlgCarrito.getContentPane());
@@ -480,11 +463,9 @@ public void filtroCategoria()
         String idSoli=" SEQ_SOLICITUD.NEXTVAL ";
         String fecha=" sysdate ";
         String estado="'pendiente'";
-        int idSoliEj = dbDetalle.getIdSolicitud(idLogin);
         Solicitud sol = new Solicitud(this.idLogin, idSoli, fecha,estado);
-        
         dbSolicitud.InsertInto(sol);
-       
+        int idSoliEj = dbDetalle.getIdSolicitud(this.idLogin);   
         for (int i = 0; i < tbSeleccion.getRowCount(); i++) {
             String idDocumento= tbSeleccion.getValueAt(i, 0).toString(); 
             int idEjemplar = db.getIdEjemplar(idDocumento);
@@ -654,7 +635,6 @@ public void filtroCategoria()
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DateSolicitud;
     private javax.swing.JPanel PnlListado;
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnCarrito;
@@ -669,7 +649,6 @@ public void filtroCategoria()
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCarrito;
     private javax.swing.JLabel lblCategoria;
-    private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblFiltrar;
     private javax.swing.JLabel lblListado;
     private javax.swing.JLabel lblTitulo;
