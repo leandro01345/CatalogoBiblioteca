@@ -167,9 +167,8 @@ public class LoginUser extends javax.swing.JFrame {
            FrmMenuPrincipal menu = new FrmMenuPrincipal();
            menu.setVisible(true);
            dispose();
-           menu.logeado = true;
            menu.idLogin  = dbSesion.BuscarId(txtUsuario.getText(), txtPwd.getText()); 
-           
+           menu.logeado = true;
            
         } else{ 
            JOptionPane.showMessageDialog(this, "Error en el usuario o contraseña", "Aviso", JOptionPane.WARNING_MESSAGE);

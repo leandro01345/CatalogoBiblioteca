@@ -68,8 +68,8 @@ public class SesionDB {
       try{
             Connection cnx = DataBaseConection.getConneccion();
             Statement st = cnx.createStatement();
-            ResultSet rs = st.executeQuery("SELECT USERNAMESESION,PASSWORDSESION, USUARIO_IDUSUARIO "
-                    + "FROM SESION  ");
+            ResultSet rs = st.executeQuery("SELECT USERNAMESESION , PASSWORDSESION, USUARIO_IDUSUARIO"
+                    + " FROM SESION ");
              while(rs.next()){
                 if(user.equals(rs.getString(1))&&pass.equals(rs.getString(2)))
                 { id = rs.getInt(3);
