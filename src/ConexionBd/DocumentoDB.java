@@ -81,7 +81,7 @@ public class DocumentoDB {
      try {
             Connection cnx = DataBaseConection.getConneccion();
             st = cnx.createStatement();
-            rs=st.executeQuery("select primer_ejemplar_disponible from v_doc_ejemplar_disponible where "+ idDocumento+" ={iddocumento};");
+            rs=st.executeQuery("select primer_ejemplar_disponible from v_doc_ejemplar_disponible where "+ idDocumento+" =iddocumento");
             while(rs.next()){
             idEjemplar = rs.getInt(1);
             return idEjemplar;

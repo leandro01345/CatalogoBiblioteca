@@ -480,7 +480,7 @@ public void filtroCategoria()
         String idSoli=" SEQ_SOLICITUD.NEXTVAL ";
         String fecha=" sysdate ";
         String estado="'pendiente'";
-        
+        int idSoliEj = dbDetalle.getIdSolicitud(idLogin);
         Solicitud sol = new Solicitud(this.idLogin, idSoli, fecha,estado);
         
         dbSolicitud.InsertInto(sol);
@@ -488,7 +488,7 @@ public void filtroCategoria()
         for (int i = 0; i < tbSeleccion.getRowCount(); i++) {
             String idDocumento= tbSeleccion.getValueAt(i, 0).toString(); 
             int idEjemplar = db.getIdEjemplar(idDocumento);
-             DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar,Integer.parseInt(idSoli));
+             DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar,idSoliEj);
              dbDetalle.InsertInto(detalle);
             }        
         JOptionPane.showMessageDialog(this, "Solicitud exitosa!");
