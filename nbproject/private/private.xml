@@ -3,11 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/H:/A%20ROMPER%20PROYECTOS!/CatalogoSisBiblio/src/ConexionBd/DocumentoDB.java</file>
-            <file>file:/H:/A%20ROMPER%20PROYECTOS!/CatalogoSisBiblio/src/ConexionBd/SesionDB.java</file>
-            <file>file:/H:/A%20ROMPER%20PROYECTOS!/CatalogoSisBiblio/src/VistaUsuario/FrmMenuPrincipal.java</file>
-            <file>file:/H:/A%20ROMPER%20PROYECTOS!/CatalogoSisBiblio/src/ConexionBd/SolicitudDB.java</file>
-            <file>file:/H:/A%20ROMPER%20PROYECTOS!/CatalogoSisBiblio/src/VistaUsuario/LoginUser.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/VistaUsuario/LoginUser.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/Clases/Solicitud.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/ConexionBd/SolicitudDB.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/ConexionBd/SesionDB.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/VistaUsuario/FrmMenuPrincipal.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/ConexionBd/DataBaseConection.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/ConexionBd/DetalleSolicitudDB.java</file>
+            <file>file:/C:/Users/Carlos/Documents/GitHub/CatalogoBiblioteca/src/ConexionBd/DocumentoDB.java</file>
         </group>
     </open-files>
 </project-private>
