@@ -460,19 +460,31 @@ public void filtroCategoria()
     private void btnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarActionPerformed
         // TODO add your handling code here:
         try {
+            int cont=0;
         String idSoli=" SEQ_SOLICITUD.NEXTVAL ";
         String fecha=" sysdate ";
         String estado="'pendiente'";
         Solicitud sol = new Solicitud(this.idLogin, idSoli, fecha,estado);
         dbSolicitud.InsertInto(sol);
-        int idSoliEj = dbDetalle.getIdSolicitud(this.idLogin);   
-        for (int i = 0; i < tbSeleccion.getRowCount(); i++) {
+        int idSoliEj = dbDetalle.getIdSolicitud(this.idLogin); 
+         
+            for (int i = 0; i < tbSeleccion.getRowCount(); i++) {
             String idDocumento= tbSeleccion.getValueAt(i, 0).toString(); 
             int idEjemplar = db.getIdEjemplar(idDocumento);
-             DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar,idSoliEj);
-             dbDetalle.InsertInto(detalle);
-            }        
-        JOptionPane.showMessageDialog(this, "Solicitud exitosa!");
+                if (idEjemplar==0) {
+                  cont=cont+1;  
+                }
+                else{
+                DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar,idSoliEj);
+                dbDetalle.InsertInto(detalle);
+                }
+            } 
+            if (cont>0) {
+              JOptionPane.showMessageDialog(this, cont + " Ejemplar/es no se encontraron!");  
+            }else{
+             JOptionPane.showMessageDialog(this,"Solicitud ingresada con exito!");  
+            }
+       
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error al ingresar solicitud!");
         }
@@ -580,7 +592,16 @@ public void filtroCategoria()
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         // TODO add your handling code here:
-    
+         m = (DefaultTableModel) tbSeleccion.getModel();
+        int FilaSelec = tbSeleccion.getSelectedRow();
+        if(FilaSelec >= 0)
+        { 
+            m.removeRow(FilaSelec);
+        }
+        else
+        {
+         JOptionPane.showMessageDialog(this, "Fila NO SELECCIONADA");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
     public void listarDatos()
     {
