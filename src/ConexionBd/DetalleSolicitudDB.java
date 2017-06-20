@@ -30,6 +30,11 @@ public class DetalleSolicitudDB {
             pst.setInt(1, d.getIdEjemplar());
             pst.setInt(2, d.getSolicitudId());
             pst.executeQuery();
+
+            cnx = DataBaseConection.getConneccion();
+            pst = cnx.prepareStatement("UPDATE EJEMPLAR SET DISPONIBILIDAD = 'reservado' WHERE IDEJEMPLAR = ?");
+            pst.setInt(1, d.getIdEjemplar());
+            pst.executeQuery();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "Error guardar");
         }
