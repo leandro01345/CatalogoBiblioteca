@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package Clases;
-
+import java.security.*;
+import java.math.BigInteger;
 /**
  *
  * @author Jose
@@ -59,5 +60,17 @@ public class Sesion {
         this.tipoSesion = tipoSesion;
     }
     
+    public static String md5(String string) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(string.getBytes(), 0, string.length());
+            String stringmd5 = (new BigInteger(1, md.digest()).toString(16));
+            System.out.println(stringmd5);
+            return stringmd5;
+        } catch (NoSuchAlgorithmException e) {
+            return "";
+        }
+        
+    } 
     
 }

@@ -26,6 +26,7 @@ public class SesionDB {
     
       public boolean AutenticarUsuario(String user, String pass){
       Sesion Se=null;
+      pass = Sesion.md5(pass);
       try{
             Connection cnx = DataBaseConection.getConneccion();
             Statement st = cnx.createStatement();
