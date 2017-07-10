@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
@@ -64,6 +65,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         tbSeleccion = new javax.swing.JTable();
         lblCarrito = new javax.swing.JLabel();
         btnEliminar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jdt = new com.toedter.calendar.JDateChooser();
+        btnReserva = new javax.swing.JButton();
         PnlListado = new javax.swing.JPanel();
         btnLogearse = new javax.swing.JButton();
         txtTitulo = new javax.swing.JTextField();
@@ -122,34 +126,64 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Fecha Reserva:");
+
+        btnReserva.setBackground(new java.awt.Color(0, 153, 204));
+        btnReserva.setFont(new java.awt.Font("Rockwell", 0, 12)); // NOI18N
+        btnReserva.setForeground(new java.awt.Color(255, 255, 255));
+        btnReserva.setText("Reservar");
+        btnReserva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReservaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(177, 177, 177)
-                .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblCarrito, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                    .addComponent(btnReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout dlgCarritoLayout = new javax.swing.GroupLayout(dlgCarrito.getContentPane());
@@ -402,7 +436,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         } else {
            int dialogButton = JOptionPane.showConfirmDialog(this, "ya hay un usuario logeado,¿Desea Cerrar Sesion?");
             if (dialogButton==JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(this, "Sesion Cerrada :D!");
+                JOptionPane.showMessageDialog(this, "Sesion Cerrada");
                 login.setVisible(true);
                 dispose();
                 
@@ -464,7 +498,8 @@ public void filtroCategoria()
         String idSoli=" SEQ_SOLICITUD.NEXTVAL ";
         String fecha=" sysdate ";
         String estado="'pendiente'";
-        Solicitud sol = new Solicitud(this.idLogin, idSoli, fecha,estado);
+        String fechaReserva = "";
+        Solicitud sol = new Solicitud(this.idLogin,fechaReserva, idSoli, fecha,estado);
         dbSolicitud.InsertInto(sol);
         int idSoliEj = dbDetalle.getIdSolicitud(this.idLogin); 
          
@@ -603,6 +638,46 @@ public void filtroCategoria()
          JOptionPane.showMessageDialog(this, "Fila NO SELECCIONADA");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReservaActionPerformed
+        // TODO add your handling code here:
+        try {
+            int cont=0;
+        String dia=Integer.toString(jdt.getCalendar().get(Calendar.DAY_OF_MONTH));
+        String mes =Integer.toString(jdt.getCalendar().get(Calendar.MONTH)+1);
+        String anio = Integer.toString(jdt.getCalendar().get(Calendar.YEAR));
+        String idSoli=" SEQ_SOLICITUD.NEXTVAL ";
+        String fecha=" sysdate ";
+        String estado="'pendiente'";
+        String fechaReserva = (dia+"/" + mes+"/"+anio);
+                Solicitud sol = new Solicitud(this.idLogin,fechaReserva, idSoli, fecha,estado);
+        dbSolicitud.InsertInto(sol);
+        int idSoliEj = dbDetalle.getIdSolicitud(this.idLogin); 
+         
+            for (int i = 0; i < tbSeleccion.getRowCount(); i++) {
+            String idDocumento= tbSeleccion.getValueAt(i, 0).toString(); 
+            int idEjemplar = db.getIdEjemplar(idDocumento);
+                if (idEjemplar==0) {
+                  cont=cont+1;  
+                }
+                else{
+                DetalleSolicitud detalle = new DetalleSolicitud(idEjemplar,idSoliEj);
+                dbDetalle.InsertInto(detalle);
+                }
+            } 
+            if (cont>0) {
+              JOptionPane.showMessageDialog(this, cont + " Ejemplar/es no se encontraron!");  
+            }else{
+             JOptionPane.showMessageDialog(this,"Reserva ingresada con exito!");  
+            }
+            
+        
+       
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al ingresar la reserva!");
+        }
+    
+    }//GEN-LAST:event_btnReservaActionPerformed
     public void listarDatos()
     {
       documentos= db.getListadoDocumento();
@@ -662,11 +737,14 @@ public void filtroCategoria()
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEnviar;
     private javax.swing.JButton btnLogearse;
+    private javax.swing.JButton btnReserva;
     private javax.swing.JDialog dlgCarrito;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private com.toedter.calendar.JDateChooser jdt;
     private javax.swing.JLabel lblAutor;
     private javax.swing.JLabel lblCarrito;
     private javax.swing.JLabel lblCategoria;

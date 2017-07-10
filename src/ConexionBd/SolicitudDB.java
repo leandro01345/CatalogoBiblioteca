@@ -25,13 +25,13 @@ public class SolicitudDB {
    public void InsertInto(Solicitud s) {
         try {
             cnx = DataBaseConection.getConneccion();
-            pst = cnx.prepareStatement("INSERT INTO SOLICITUD(USUARIO_IDUSUARIO, IDSOLICITUD , FECHASOLICITUD"
-                    + ", ESTADOSOLICITUD)"
-                    + " VALUES(?,SEQ_SOLICITUD.NEXTVAL, sysdate, 'pendiente')");
+            pst = cnx.prepareStatement("INSERT INTO SOLICITUD(USUARIO_IDUSUARIO,FECHARESERVA,IDSOLICITUD,FECHASOLICITUD,ESTADOSOLICITUD)"
+                    + " VALUES(?,?,SEQ_SOLICITUD.NEXTVAL, sysdate, 'pendiente')");
             pst.setInt(1, s.getIdUsuario());
             //pst.setString(2, s.getIdSolicitud());
             //pst.setString(3, s.getFechaSolicitud());
             //pst.setString(4, s.getEstado());
+            pst.setString(2, s.getFechaReserva());
             pst.executeQuery();
         } catch (SQLException e) {
             System.out.println(e.getMessage() + "Error guardar");

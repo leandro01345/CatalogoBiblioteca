@@ -66,6 +66,7 @@ public class SesionDB {
     }
       public int BuscarId(String user, String pass){
       int id=0;
+      pass = Sesion.md5(pass);
       try{
             Connection cnx = DataBaseConection.getConneccion();
             Statement st = cnx.createStatement();

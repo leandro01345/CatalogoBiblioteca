@@ -29,9 +29,7 @@ public class DocumentoDB {
         try {
             cnx = DataBaseConection.getConneccion();
             st = cnx.createStatement();
-            rs = st.executeQuery("SELECT IDDOCUMENTO, TIPODOCUMENTO, TITULODOCUMENTO, AUTORDOCUMENTO, "
-                    + "EDITORIALDOCUMENTO, EDICIONDOCUMENTO, ANIODOCUMENTO, CATEGORIADOCUMENTO, "
-                    + "CANTIDAD, DISPONIBLES FROM V_CATALOGO WHERE DISPONIBLES > 0");
+            rs = st.executeQuery("SELECT * FROM DOCUMENTO");
             while (rs.next()) {
                 Documento d = new Documento();
                 d.setId_documento(rs.getInt(1));

@@ -11,6 +11,7 @@ package Clases;
  */
 public class Solicitud {
     private int idUsuario;
+    private String fechaReserva;
     private String idSolicitud;
     private String fechaSolicitud;
     private String estado;
@@ -20,13 +21,23 @@ public class Solicitud {
     public Solicitud() {
     }
 
-    public Solicitud(int idUsuario, String idSolicitud, String fechaSolicitud, String estado) {
+    public Solicitud(int idUsuario, String fechaReserva, String idSolicitud, String fechaSolicitud, String estado) {
         this.idUsuario = idUsuario;
-        this.idSolicitud = idSolicitud;
         this.fechaSolicitud = fechaSolicitud;
+        this.idSolicitud = idSolicitud;
+        this.fechaReserva = fechaReserva;
         this.estado = estado;
      
     }
+
+    public String getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(String fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }
+    
     public String getEstado() {
         return estado;
     }
