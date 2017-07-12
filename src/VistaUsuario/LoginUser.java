@@ -163,7 +163,7 @@ public class LoginUser extends javax.swing.JFrame {
     private void btnLogearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogearActionPerformed
             
         if (dbSesion.AutenticarUsuario(txtUsuario.getText(), txtPwd.getText())==true) {
-           JOptionPane.showMessageDialog(this, "Ingreso exitosamente!. :D");
+           JOptionPane.showMessageDialog(this, "Ingreso exitoso");
            FrmMenuPrincipal menu = new FrmMenuPrincipal();
            menu.setVisible(true);
            dispose();

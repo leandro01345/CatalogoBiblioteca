@@ -18,6 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -650,6 +653,20 @@ public void filtroCategoria()
         String fecha=" sysdate ";
         String estado="'pendiente'";
         String fechaReserva = (dia+"/" + mes+"/"+anio);
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dateInString = fechaReserva;
+
+        try {
+
+            Date date = formatter.parse(dateInString);
+            System.out.println(date);
+            System.out.println(formatter.format(date));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
                 Solicitud sol = new Solicitud(this.idLogin,fechaReserva, idSoli, fecha,estado);
         dbSolicitud.InsertInto(sol);
         int idSoliEj = dbDetalle.getIdSolicitud(this.idLogin); 
